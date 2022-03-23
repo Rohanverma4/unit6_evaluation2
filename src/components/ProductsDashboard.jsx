@@ -3,18 +3,18 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./css/products.css"
 import {
-  getProductsReq,
-  getProductsSuccess,
+  // getProductsReq,
+  // getProductsSuccess,
   getproductsData,
-  getProductsFailure,
+  // getProductsFailure,
   desc_sortProducts,
   asc_sortProducts
 } from '../Redux/actions.js'
 import { useNavigate } from "react-router";
 export const Products = () => {
   // to get all products list on component mounts
-  const data = useSelector((store) => store.products)
-  // console.log(store)
+  const data = useSelector((store) => store)
+  console.log(data)
   const dispatch = useDispatch();
   const navigate = useNavigate()
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Products = () => {
     // dont make call here
     // handle it as thunk call in actions.js
     dispatch(getproductsData())
-  }, [dispatch]);
+  }, []);
 
   //    sort by price
   const handleSort = (e) => {
@@ -43,8 +43,8 @@ export const Products = () => {
       </select>
       <div className="products-list">
         {/* map throught th products  list and display the results */}
-        {data &&
-          data.map((item) => {
+        {data?.products.length &&
+          data?.products.map((item) => {
             return (<SingleProduct id = {item.id} 
                                   price= {item.price}
                                   image= {item.image}
@@ -61,7 +61,7 @@ export const Products = () => {
 
 function SingleProduct({id,price,image,title, brand, category,navigate }) {
   const handleNav = () => {
-    navigate(`/${id}`)
+    navigate(`/products/${id}`)
   }
   return (
     <div onClick={handleNav}>

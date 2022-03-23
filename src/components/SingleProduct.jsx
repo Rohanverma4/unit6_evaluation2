@@ -6,7 +6,7 @@ export const SingleProductList = () => {
 
   const [data, setData] = useState([])  
   useEffect(() => {
-    axios.get(` https://movie-fake-server.herokuapp.com/products/${id}`)
+    axios.get(`https://movie-fake-server.herokuapp.com/products/${id}`)
     .then(({ data }) => setData(data));
   },[])
     // make a request to get the details

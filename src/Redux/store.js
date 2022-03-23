@@ -7,4 +7,4 @@ export const store = createStore(reducer,applyMiddleware(thunk))
 
 if (window.Cypress) {
     window.store = store
-  }
+}
